@@ -2,10 +2,9 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.ico" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>LocalProofHQ</title>
-    <meta name="description" content="Become the obvious local choice. Collect and showcase social proof, feedback, and reputation signals with LocalProofHQ." />
-    <link rel="icon" type="image/x-icon" href="/favicon.ico" />
   </head>
   <body>
     <div id="root"></div>
@@ -19,6 +18,11 @@
             });
           }
         });
+      }
+      
+      // Redirect admin path to CMS
+      if (window.location.pathname === '/admin/') {
+        window.location.href = '/admin/#/collections/site';
       }
     </script>
   </body>

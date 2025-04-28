@@ -1,5 +1,6 @@
-import React, { useEffect, useState } from 'react';
-import { FaStar, FaChartLine, FaCheckCircle, FaRocket, FaUser, FaPaintBrush, FaGlobe } from 'react-icons/fa';
+import React from 'react';
+import { useEffect, useState } from 'react';
+import { FaStar, FaChartLine, FaCheckCircle, FaRocket } from 'react-icons/fa';
 
 function App() {
   const [content, setContent] = useState(null);
