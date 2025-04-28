@@ -2,6 +2,8 @@ backend:
   name: github
   repo: sarasheets/localproofhq-homepage
   branch: main
+  base_url: https://localproofhq.com
+  auth_endpoint: /admin/auth
 
 collections:
   - name: "site"
