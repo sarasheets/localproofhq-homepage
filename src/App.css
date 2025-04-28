@@ -1,0 +1,273 @@
+/* Responsive tweaks for the homepage */
+@media (max-width: 900px) {
+  section {
+    flex-direction: column !important;
+    gap: 24px !important;
+  }
+}
+
+@media (max-width: 600px) {
+  header nav.container {
+    flex-direction: column;
+    gap: 1rem;
+  }
+  header ul {
+    gap: 16px !important;
+  }
+  section {
+    padding: 1.5rem 0.25rem !important;
+  }
+  h1 {
+    font-size: 2em !important;
+  }
+  h2 {
+    font-size: 1.3em !important;
+  }
+}
+
+/* Base styles */
+:root {
+  --primary-color: #003366;
+  --secondary-color: #66CCFF;
+  --background-color: #F8FBFD;
+  --text-color: #003366;
+  --border-color: #E6ECF1;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+  line-height: 1.6;
+  color: var(--text-color);
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 2rem;
+}
+
+/* Header styles */
+header {
+  background: white;
+  border-bottom: 1px solid var(--border-color);
+}
+
+header nav {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1.5rem 0;
+}
+
+.logo {
+  font-weight: 700;
+  font-size: 24px;
+  color: var(--primary-color);
+  letter-spacing: 1px;
+}
+
+.nav-links {
+  display: flex;
+  gap: 2rem;
+  list-style: none;
+}
+
+.nav-links a {
+  color: var(--primary-color);
+  text-decoration: none;
+  font-weight: 500;
+  transition: color 0.2s ease;
+}
+
+.nav-links a:hover {
+  color: var(--secondary-color);
+}
+
+/* Hero section */
+.hero {
+  padding: 4rem 0;
+  text-align: center;
+}
+
+.hero h1 {
+  font-size: 40px;
+  font-weight: 800;
+  color: var(--primary-color);
+  margin-bottom: 1rem;
+}
+
+.hero p {
+  font-size: 20px;
+  color: var(--text-color);
+  margin-bottom: 2rem;
+}
+
+/* CTA button */
+.cta-button {
+  display: inline-block;
+  padding: 1rem 2rem;
+  font-size: 20px;
+  font-weight: 600;
+  background: var(--primary-color);
+  color: white;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.cta-button:hover {
+  background: var(--secondary-color);
+  transform: translateY(-2px);
+}
+
+/* Benefits section */
+.benefits {
+  padding: 4rem 0;
+  background: var(--background-color);
+}
+
+.benefits-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 2rem;
+}
+
+.benefit-item {
+  text-align: center;
+  padding: 2rem;
+}
+
+.benefit-icon {
+  margin-bottom: 1rem;
+}
+
+/* How it works section */
+.how-it-works {
+  padding: 4rem 0;
+  text-align: center;
+}
+
+.steps-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 2rem;
+  margin-top: 2rem;
+}
+
+.step {
+  flex: 1 1 240px;
+  min-width: 220px;
+  background: white;
+  border: 1px solid var(--border-color);
+  border-radius: 12px;
+  padding: 2rem;
+}
+
+.step-number {
+  font-size: 24px;
+  font-weight: 600;
+  color: var(--primary-color);
+  margin-bottom: 0.5rem;
+}
+
+.step-content {
+  margin-top: 1rem;
+}
+
+.step-icon {
+  margin-bottom: 0.5rem;
+}
+
+.step h3 {
+  font-weight: 700;
+  font-size: 18px;
+  margin-bottom: 0.5rem;
+}
+
+.step p {
+  color: var(--text-color);
+  opacity: 0.85;
+}
+
+/* Pricing teaser section */
+.pricing-teaser {
+  padding: 4rem 0;
+  background: var(--background-color);
+  text-align: center;
+}
+
+.pricing-content {
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.pricing-content p {
+  font-size: 24px;
+  font-weight: 700;
+  color: var(--primary-color);
+  margin-bottom: 1rem;
+}
+
+/* Footer */
+.footer {
+  padding: 3rem 0;
+  border-top: 1px solid var(--border-color);
+  text-align: center;
+  font-size: 14px;
+  color: var(--text-color);
+}
+
+.footer-links {
+  margin-bottom: 1rem;
+}
+
+.footer-links a {
+  color: var(--text-color);
+  text-decoration: none;
+  margin: 0 0.5rem;
+}
+
+.footer-links a:hover {
+  color: var(--secondary-color);
+}
+
+/* Responsive design */
+@media (max-width: 900px) {
+  .benefits-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  
+  .steps-container {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 600px) {
+  .nav-links {
+    display: none;
+  }
+  
+  .hero h1 {
+    font-size: 32px;
+  }
+  
+  .hero p {
+    font-size: 16px;
+  }
+  
+  .benefits-grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .steps-container {
+    grid-template-columns: 1fr;
+  }
+}
