@@ -4,6 +4,7 @@
 
 [identity]
   allowed_domains = ["localproofhq.com"]
+  invite_by_email = true
 
 [build.environment]
   NODE_VERSION = "18"
@@ -11,3 +12,17 @@
 [plugins]
   - plugin = "netlify-cms"
     config = "static/admin/config.yml"
+
+[redirects]
+  - from = "/admin/*"
+    to = "/admin/"
+    status = 200
+
+[headers]
+  for = "/admin/*"
+    [headers.values]
+      X-Frame-Options = "SAMEORIGIN"
+      X-XSS-Protection = "1; mode=block"
+      X-Content-Type-Options = "nosniff"
+      Referrer-Policy = "strict-origin-when-cross-origin"
+      Content-Security-Policy = "frame-ancestors 'self' https://*.netlify.app https://*.netlify.com;"
