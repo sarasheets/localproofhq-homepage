@@ -1,5 +1,13 @@
 [build]
   command = "npm run build"
   publish = "dist"
+
+[identity]
+  allowed_domains = ["localproofhq.com"]
+
 [build.environment]
-  NODE_VERSION = "22.15.0"
+  NODE_VERSION = "18"
+
+[plugins]
+  - plugin = "netlify-cms"
+    config = "static/admin/config.yml"

@@ -1,0 +1,21 @@
+hero_headline: "Become the Obvious Local Choice with LocalProofHQ"
+hero_subheadline: "Local proof your business and win more customers in less time."
+benefits:
+  - icon: "FaStar"
+    title: "Instantly Build Trust"
+  - icon: "FaChartLine"
+    title: "Boost Your Local Rankings"
+  - icon: "FaCheckCircle"
+    title: "Display Verified Proof Everywhere"
+  - icon: "FaRocket"
+    title: "Easy Setup, Big Results"
+how_it_works:
+  - number: 1
+    title: "Claim Your Profile"
+    description: "Sign up and claim your business profile in minutes."
+  - number: 2
+    title: "Customize Your Proof"
+    description: "Choose the reviews, testimonials, and signals you want to display."
+  - number: 3
+    title: "Share Everywhere"
+    description: "Embed and share your proof on your website, social, and more."

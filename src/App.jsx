@@ -1,119 +1,151 @@
-import React from "react";
-import { FaStar, FaChartLine, FaCheckCircle, FaRocket, FaUser, FaPaintBrush, FaGlobe } from "react-icons/fa";
+import React, { useEffect, useState } from 'react';
+import { FaStar, FaChartLine, FaCheckCircle, FaRocket, FaUser, FaPaintBrush, FaGlobe } from 'react-icons/fa';
 
-const navLinks = [
-  { label: "Home", href: "#home" },
-  { label: "How It Works", href: "#how" },
-  { label: "Pricing", href: "#pricing" },
-  { label: "Contact", href: "#footer" },
-];
+function App() {
+  const [content, setContent] = useState(null);
 
-const benefits = [
-  { icon: <FaStar color="#66CCFF" size={32} />, text: "Instantly Build Trust" },
-  { icon: <FaChartLine color="#66CCFF" size={32} />, text: "Boost Your Local Rankings" },
-  { icon: <FaCheckCircle color="#66CCFF" size={32} />, text: "Display Verified Proof Everywhere" },
-  { icon: <FaRocket color="#66CCFF" size={32} />, text: "Easy Setup, Big Results" },
-];
+  useEffect(() => {
+    fetch('/content/site.yml')
+      .then(response => response.text())
+      .then(text => {
+        const yamlContent = text.split('\n').reduce((acc, line) => {
+          if (line.includes(':')) {
+            const [key, value] = line.split(':');
+            acc[key.trim()] = value.trim();
+          }
+          return acc;
+        }, {});
+        setContent(yamlContent);
+      });
+  }, []);
 
-const steps = [
-  { 
-    number: 1, 
-    title: "Claim Your Profile", 
-    icon: <FaUser color="#66CCFF" size={24} />,
-    desc: "Sign up and claim your business profile in minutes." 
-  },
-  { 
-    number: 2, 
-    title: "Customize Your Proof", 
-    icon: <FaPaintBrush color="#66CCFF" size={24} />,
-    desc: "Choose the reviews, testimonials, and signals you want to display." 
-  },
-  { 
-    number: 3, 
-    title: "Share Everywhere", 
-    icon: <FaGlobe color="#66CCFF" size={24} />,
-    desc: "Embed and share your proof on your website, social, and more." 
-  },
-];
-
-export default function App() {
   return (
-    <div className="app">
+    <div className="min-h-screen bg-white">
       {/* Header */}
-      <header id="home" style={{ background: "#fff", borderBottom: "1px solid #E6ECF1" }}>
-        <nav className="container" style={{ display: "flex", alignItems: "center", justifyContent: "space-between", padding: "1.5rem 0" }}>
-          <div className="logo" style={{ fontWeight: 700, fontSize: 24, color: "#003366", letterSpacing: 1 }}>LocalProofHQ</div>
-          <ul className="nav-links" style={{ display: "flex", gap: 32, listStyle: "none", margin: 0, padding: 0 }}>
-            {navLinks.map(link => (
-              <li key={link.label}>
-                <a href={link.href} style={{ color: "#003366", textDecoration: "none", fontWeight: 500 }}>{link.label}</a>
-              </li>
-            ))}
-          </ul>
+      <header className="bg-white shadow">
+        <nav className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="flex justify-between h-16">
+            <div className="flex">
+              <div className="flex-shrink-0 flex items-center">
+                <span className="text-xl font-bold text-deep-blue">LocalProofHQ</span>
+              </div>
+              <div className="hidden sm:ml-6 sm:flex sm:space-x-8">
+                <a href="#" className="border-deep-blue text-gray-900 inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium">
+                  Home
+                </a>
+                <a href="#" className="border-transparent text-gray-500 hover:border-gray-300 hover:text-gray-700 inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium">
+                  How It Works
+                </a>
+                <a href="#" className="border-transparent text-gray-500 hover:border-gray-300 hover:text-gray-700 inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium">
+                  Pricing
+                </a>
+                <a href="#" className="border-transparent text-gray-500 hover:border-gray-300 hover:text-gray-700 inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium">
+                  Contact
+                </a>
+              </div>
+            </div>
+          </div>
         </nav>
       </header>
 
       {/* Hero Section */}
-      <section className="hero" style={{ textAlign: "center", paddingTop: 64, paddingBottom: 64 }}>
-        <div className="container" style={{ maxWidth: 800, margin: "0 auto" }}>
-          <h1 style={{ fontSize: 40, fontWeight: 800, color: "#003366", marginBottom: 16 }}>Become the Obvious Local Choice with LocalProofHQ</h1>
-          <p style={{ fontSize: 20, color: "#003366", marginBottom: 32 }}>Turn Local Trust Into More Customers — Faster.</p>
-          <button className="cta-button" style={{ fontSize: 20, background: "#003366", color: "#fff" }}>Get Started</button>
+      <main className="mt-10 mx-auto max-w-7xl px-4 sm:mt-12 sm:px-6 md:mt-16 lg:mt-20 lg:px-8 xl:mt-28">
+        <div className="text-center">
+          <h1 className="text-4xl tracking-tight font-extrabold text-gray-900 sm:text-5xl md:text-6xl">
+            <span className="block">{content?.hero_headline || 'Become the Obvious Local Choice with LocalProofHQ'}</span>
+            <span className="block text-deep-blue">{content?.hero_subheadline || 'Local proof your business and win more customers in less time.'}</span>
+          </h1>
+          <div className="mt-5 max-w-md mx-auto sm:flex sm:justify-center md:mt-6">
+            <div className="rounded-md shadow">
+              <a href="#" className="w-full flex items-center justify-center px-8 py-3 border border-transparent text-base font-medium rounded-md text-white bg-deep-blue hover:bg-light-blue md:py-4 md:text-lg md:px-10">
+                Get Started
+              </a>
+            </div>
+          </div>
         </div>
-      </section>
+      </main>
 
       {/* Benefits Section */}
-      <section className="benefits" style={{ display: "flex", flexWrap: "wrap", justifyContent: "space-between", gap: 32, background: "#F8FBFD", borderRadius: 16 }}>
-        <div className="container" style={{ maxWidth: 1200, margin: "0 auto", padding: 24 }}>
-          <div className="benefits-grid" style={{ display: "grid", gridTemplateColumns: "repeat(4, 1fr)", gap: 24 }}>
-            {benefits.map((benefit, index) => (
-              <div key={index} className="benefit-item" style={{ flex: "1 1 200px", minWidth: 200, textAlign: "center" }}>
-                <div className="benefit-icon" style={{ marginBottom: 12 }}>{benefit.icon}</div>
-                <h3 style={{ fontWeight: 600, fontSize: 18 }}>{benefit.text}</h3>
-              </div>
-            ))}
+      <div className="py-12 bg-gray-50">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="lg:text-center">
+            <h2 className="text-base text-deep-blue font-semibold tracking-wide uppercase">Benefits</h2>
+            <p className="mt-2 text-3xl leading-8 font-extrabold tracking-tight text-gray-900 sm:text-4xl">
+              Everything you need to grow your business
+            </p>
+          </div>
+
+          <div className="mt-10">
+            <dl className="space-y-10 md:space-y-0 md:grid md:grid-cols-2 md:gap-x-8 md:gap-y-10">
+              {content?.benefits?.map((benefit, index) => (
+                <div key={index} className="relative">
+                  <dt>
+                    <div className="absolute flex items-center justify-center h-12 w-12 rounded-md bg-deep-blue text-white">
+                      {React.createElement(benefit.icon, { className: 'h-6 w-6' })}
+                    </div>
+                    <p className="ml-16 text-lg leading-6 font-medium text-gray-900">
+                      {benefit.title}
+                    </p>
+                  </dt>
+                  <dd className="mt-2 ml-16 text-base text-gray-500">
+                    {benefit.description}
+                  </dd>
+                </div>
+              ))}
+            </dl>
           </div>
         </div>
-      </section>
+      </div>
 
       {/* How It Works Section */}
-      <section id="how" className="how-it-works" style={{ textAlign: "center" }}>
-        <div className="container" style={{ maxWidth: 1200, margin: "0 auto", padding: 24 }}>
-          <h2 style={{ color: "#003366", fontWeight: 700, fontSize: 32, marginBottom: 32 }}>How It Works</h2>
-          <div className="steps-container" style={{ display: "flex", flexWrap: "wrap", justifyContent: "space-between", gap: 32 }}>
-            {steps.map((step, index) => (
-              <div key={index} className="step" style={{ flex: "1 1 240px", minWidth: 220, background: "#fff", border: "1px solid #E6ECF1", borderRadius: 12, padding: 24 }}>
-                <div className="step-number" style={{ fontSize: 24, fontWeight: 600, color: "#003366", marginBottom: 8 }}>{step.number}</div>
-                <div className="step-content">
-                  <div className="step-icon" style={{ marginBottom: 8 }}>{step.icon}</div>
-                  <h3 style={{ fontWeight: 700, fontSize: 18, marginBottom: 8 }}>{step.title}</h3>
-                  <p style={{ color: "#003366", opacity: 0.85 }}>{step.desc}</p>
+      <div className="py-12 bg-white">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="lg:text-center">
+            <h2 className="text-base text-deep-blue font-semibold tracking-wide uppercase">How It Works</h2>
+            <p className="mt-2 text-3xl leading-8 font-extrabold tracking-tight text-gray-900 sm:text-4xl">
+              Simple steps to get started
+            </p>
+          </div>
+
+          <div className="mt-10">
+            <div className="grid grid-cols-1 gap-8 md:grid-cols-3">
+              {content?.how_it_works?.map((step, index) => (
+                <div key={index} className="bg-white p-6 rounded-lg shadow">
+                  <div className="text-4xl font-bold text-deep-blue mb-4">{step.number}</div>
+                  <h3 className="text-xl font-semibold text-gray-900 mb-2">{step.title}</h3>
+                  <p className="text-gray-600">{step.description}</p>
                 </div>
-              </div>
-            ))}
+              ))}
+            </div>
           </div>
         </div>
-      </section>
+      </div>
 
       {/* Pricing Teaser Section */}
-      <section id="pricing" className="pricing-teaser" style={{ textAlign: "center", background: "#F8FBFD", borderRadius: 16 }}>
-        <div className="container" style={{ maxWidth: 800, margin: "0 auto", padding: 24 }}>
-          <div className="pricing-content" style={{ fontSize: 24, fontWeight: 700, color: "#003366", marginBottom: 16 }}>Simple pricing starting at just $19/month</div>
-          <button className="cta-button" style={{ background: "#66CCFF", color: "#003366", fontWeight: 700 }}>See Plans</button>
+      <div className="py-12 bg-gray-50">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center">
+            <h2 className="text-3xl font-bold text-gray-900 mb-4">Start Collecting Local Proof Today</h2>
+            <p className="text-gray-600 mb-8">Simple, transparent pricing with no hidden fees.</p>
+            <a href="#" className="inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md text-white bg-deep-blue hover:bg-light-blue">
+              View Pricing
+            </a>
+          </div>
         </div>
-      </section>
+      </div>
 
       {/* Footer */}
-      <footer id="footer" className="footer" style={{ marginTop: 64, padding: "2rem 0", borderTop: "1px solid #E6ECF1", textAlign: "center", fontSize: 14, color: "#003366" }}>
-        <div className="container" style={{ maxWidth: 800, margin: "0 auto" }}>
-          <div className="footer-links" style={{ marginBottom: 8 }}>
-            <a href="#footer" style={{ color: "#003366", margin: "0 8px", textDecoration: "none" }}>Contact</a>|
-            <a href="#" style={{ color: "#003366", margin: "0 8px", textDecoration: "none" }}>Terms of Service</a>|
-            <a href="#" style={{ color: "#003366", margin: "0 8px", textDecoration: "none" }}>Privacy Policy</a>
+      <footer className="bg-gray-800">
+        <div className="max-w-7xl mx-auto py-12 px-4 sm:px-6 lg:px-8">
+          <div className="border-t border-gray-700 pt-8">
+            <p className="text-base text-gray-400 xl:text-center">
+              &copy; 2025 LocalProofHQ. All rights reserved.
+            </p>
           </div>
-          <div style={{ opacity: 0.7 }}> {new Date().getFullYear()} LocalProofHQ. All rights reserved.</div>
         </div>
       </footer>
     </div>
   );
 }
+
+export default App;

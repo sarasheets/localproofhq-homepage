@@ -1,0 +1,42 @@
+backend:
+  name: github
+  repo: sarasheets/localproofhq-homepage
+  branch: main
+
+collections:
+  - name: "site"
+    label: "Site Content"
+    files:
+      - file: "src/content/site.yml"
+        name: "home"
+        label: "Home Page"
+        fields:
+          - label: "Hero Headline"
+            name: "hero_headline"
+            widget: "string"
+          - label: "Hero Subheadline"
+            name: "hero_subheadline"
+            widget: "string"
+          - label: "Benefits"
+            name: "benefits"
+            widget: "list"
+            fields:
+              - label: "Icon"
+                name: "icon"
+                widget: "string"
+              - label: "Title"
+                name: "title"
+                widget: "string"
+          - label: "How It Works"
+            name: "how_it_works"
+            widget: "list"
+            fields:
+              - label: "Number"
+                name: "number"
+                widget: "number"
+              - label: "Title"
+                name: "title"
+                widget: "string"
+              - label: "Description"
+                name: "description"
+                widget: "text"
