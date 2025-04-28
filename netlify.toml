@@ -5,6 +5,8 @@
 [identity]
   allowed_domains = ["localproofhq.com"]
   invite_by_email = true
+  internal_authors_only = false
+  url = "https://localproofhq.com"
 
 [build.environment]
   NODE_VERSION = "18"
