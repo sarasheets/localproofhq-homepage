@@ -1,9 +1,10 @@
-import React from 'react';
-import { useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
+import { useAuth0 } from '@auth0/auth0-react';
 import { FaStar, FaChartLine, FaCheckCircle, FaRocket } from 'react-icons/fa';
 
 function App() {
   const [content, setContent] = useState(null);
+  const { loginWithRedirect, isAuthenticated } = useAuth0();
 
   useEffect(() => {
     fetch('/content/site.yml')
@@ -44,6 +45,16 @@ function App() {
                   Contact
                 </a>
               </div>
+            </div>
+            <div className="flex items-center">
+              {!isAuthenticated && (
+                <button
+                  onClick={() => loginWithRedirect()}
+                  className="ml-4 inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md text-white bg-deep-blue hover:bg-light-blue"
+                >
+                  Log In
+                </button>
+              )}
             </div>
           </div>
         </nav>
